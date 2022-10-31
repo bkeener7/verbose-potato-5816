@@ -1,0 +1,10 @@
+<h2>All items</h2>
+
+<div id='all_items'>
+    <% @items.each do |item| %>
+        <p><b><%= item.name %></b><br>
+            $<%= item.price %><br>
+            Customers with item in basket: <%= item.customer_count %><br>
+            <%= item.supermarket.name %></p>
+    <% end %>
+<div>

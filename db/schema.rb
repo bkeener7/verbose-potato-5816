@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_31_152130) do
+ActiveRecord::Schema.define(version: 2022_10_31_170017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customer_baskets", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_baskets_on_customer_id"
+    t.index ["item_id"], name: "index_customer_baskets_on_item_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -27,8 +36,6 @@ ActiveRecord::Schema.define(version: 2022_10_31_152130) do
     t.bigint "supermarket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "customer_id"
-    t.index ["customer_id"], name: "index_items_on_customer_id"
     t.index ["supermarket_id"], name: "index_items_on_supermarket_id"
   end
 
@@ -39,5 +46,6 @@ ActiveRecord::Schema.define(version: 2022_10_31_152130) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "items", "customers"
+  add_foreign_key "customer_baskets", "customers"
+  add_foreign_key "customer_baskets", "items"
 end

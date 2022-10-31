@@ -1,4 +1,9 @@
 class Item < ApplicationRecord
   belongs_to :supermarket
-  belongs_to :customer
+  has_many :customer_baskets
+  has_many :customers, through: :customer_baskets
+
+  def customer_count
+    customers.length
+  end
 end

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  # default
+  get '/', to: 'items#index'
+
   # customers
-  get 'customers/:id', to: 'customers#show'
+  get '/customers/:id', to: 'customers#show'
 
   # items
-  patch '/items/add_customer', to: 'items#add_customer'
+  get '/items', to: 'items#index'
+
+  # customer_basket
+  post '/customer_basket/add_customer', to: 'customer_basket#add_customer'
 end

@@ -6,9 +6,12 @@ RSpec.describe 'customers' do
     @supermarket2 = Supermarket.create!(name: 'Whole Foods', location: 'Fort Collins')
     @customer1 = Customer.create!(name: 'Bruce Wayne')
     @customer2 = Customer.create!(name: 'Barack Obama')
-    @item1 = Item.create!(name: 'Fresca', price: 1, supermarket_id: @supermarket1.id, customer_id: @customer1.id)
-    @item2 = Item.create!(name: 'Topochico', price: 2, supermarket_id: @supermarket1.id, customer_id: @customer1.id)
-    @item3 = Item.create!(name: 'LaCroix', price: 5, supermarket_id: @supermarket2.id, customer_id: @customer2.id)
+    @item1 = Item.create!(name: 'Fresca', price: 1, supermarket_id: @supermarket1.id)
+    @item2 = Item.create!(name: 'Topochico', price: 2, supermarket_id: @supermarket1.id)
+    @item3 = Item.create!(name: 'LaCroix', price: 5, supermarket_id: @supermarket2.id)
+    CustomerBasket.create!(item_id: @item1.id, customer_id: @customer1.id)
+    CustomerBasket.create!(item_id: @item2.id, customer_id: @customer1.id)
+    CustomerBasket.create!(item_id: @item3.id, customer_id: @customer2.id)
   end
   describe 'customers show page' do
     it 'sees customers name and list of its items' do
