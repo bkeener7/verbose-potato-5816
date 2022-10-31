@@ -9,3 +9,13 @@
        <%= item.supermarket.name %></p>
 <% end %>
 </div>
+
+Add New Item:
+<div id='add_new_item'>
+    <%= form_with url: '/items/add_customer', method: :patch, local: true do |f| %>
+    <%= f.label 'Item id:' %>
+    <%= f.text_field :item_id %>
+    <%= f.hidden_field :customer_id, value: @customer.id %>
+    <%= f.submit 'Add Item'%>
+    <% end %>
+</div>
